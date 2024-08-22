@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <content xmlns:j="http://www.jahia.org/jahia/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0">
    <modules jcr:primaryType="jnt:modules">
-      <game-4-jcustomer-components-quiz j:dependencies="codemirror-editor default game-4-jcustomer-core jexperience"
+      <quiz-4-jahia j:dependencies="codemirror-editor default jexperience"
                                         j:modulePriority="0"
                                         j:moduleType="module"
-                                        j:title="Game for jCustomer Quiz Components Module"
+                                        j:title="Quiz 4 Jahia"
                                         jcr:primaryType="jnt:module">
          <portlets jcr:primaryType="jnt:portletFolder"/>
          <files jcr:primaryType="jnt:folder"/>
@@ -78,7 +78,7 @@
                   <header-1 jcr:primaryType="jnt:area">
                      <header-1 jcr:mixinTypes="jmix:systemNameReadonly"
                                jcr:primaryType="jnt:contentList">
-                        <quizheading j:bindedComponent="#/modules/game-4-jcustomer-components-quiz/templates/game4quiz/pagecontent/main-resource-display"
+                        <quizheading j:bindedComponent="#/modules/quiz-4-jahia/templates/game4quiz/pagecontent/main-resource-display"
                                      jcr:primaryType="game4nt:quizHeading"/>
                      </header-1>
                   </header-1>
@@ -86,6 +86,6 @@
                </pagecontent>
             </game4quiz>
          </templates>
-      </game-4-jcustomer-components-quiz>
+      </quiz-4-jahia>
    </modules>
 </content>

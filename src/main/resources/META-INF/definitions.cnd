@@ -1,9 +1,9 @@
 <mix = 'http://www.jcp.org/jcr/mix/1.0'>
 <jnt = 'http://www.jahia.org/jahia/nt/1.0'>
 <jmix = 'http://www.jahia.org/jahia/mix/1.0'>
-<game4mix = 'http://modules.se.jahia.org/game-4-jcustomer/mix/1.0'>
-<game4nt = 'http://modules.se.jahia.org/game-4-jcustomer/nt/1.0'>
-<game4 = 'http://modules.se.jahia.org/game-4-jcustomer/1.0'>
+<game4mix = 'http://modules.se.jahia.org/quiz-4-jahia/mix/1.0'>
+<game4nt = 'http://modules.se.jahia.org/quiz-4-jahia/nt/1.0'>
+<game4 = 'http://modules.se.jahia.org/quiz-4-jahia/1.0'>
 
 [game4mix:components] > jmix:droppableContent mixin
 [game4mix:showInTree] > jmix:visibleInContentTree, jmix:editorialContent mixin
@@ -60,7 +60,7 @@
 orderable
  - game4:quizKey (string) primary mandatory fulltextsearchable=no
  - game4:subtitle (string) internationalized
- - game4:description (string, richtext[ckeditor.toolbar='Tinny',ckeditor.customConfig='$context/modules/game-4-jcustomer-components-quiz/javascript/ckeditor/config/small.js']) internationalized
+ - game4:description (string, richtext[ckeditor.toolbar='Tinny',ckeditor.customConfig='$context/modules/quiz-4-jahia/javascript/ckeditor/config/small.js']) internationalized
  - game4:duration (string,choicelist[resourceBundle]) = '5 mins' autocreated indexed=no < '5 mins', '10 mins', '30 mins', '1h' , '> 1h'
  + * (game4mix:quizChild)
 // + game4:personalizedScoreContent (game4nt:scorePerso)
@@ -68,7 +68,7 @@ orderable
 [game4nt:warmup] > jnt:content, game4mix:showInTree, game4mix:quizChild, game4mix:mediaReference, mix:title
 orderable
  - game4:subtitle (string) internationalized
- - game4:content (string, richtext[ckeditor.toolbar='Tinny',ckeditor.customConfig='$context/modules/game-4-jcustomer-components-quiz/javascript/ckeditor/config/small.js']) internationalized
+ - game4:content (string, richtext[ckeditor.toolbar='Tinny',ckeditor.customConfig='$context/modules/quiz-4-jahia/javascript/ckeditor/config/small.js']) internationalized
  - game4:qnaDuration (string,choicelist[resourceBundle]) = '5 mins' autocreated indexed=no < '5 mins', '10 mins', '30 mins', '1h' , '> 1h'
  + * (game4mix:warmupChild)
 
@@ -91,7 +91,7 @@ orderable
 orderable
  - game4:title (string) internationalized
  - game4:subtitle (string) internationalized
- - game4:content (string, richtext[ckeditor.toolbar='Tinny',ckeditor.customConfig='$context/modules/game-4-jcustomer-components-quiz/javascript/ckeditor/config/small.js']) internationalized
+ - game4:content (string, richtext[ckeditor.toolbar='Tinny',ckeditor.customConfig='$context/modules/quiz-4-jahia/javascript/ckeditor/config/small.js']) internationalized
 + * (jnt:bigText)
 
 

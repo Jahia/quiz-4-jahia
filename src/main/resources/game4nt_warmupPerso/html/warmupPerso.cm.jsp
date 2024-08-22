@@ -8,7 +8,7 @@
 <%--Add files used by the webapp--%>
 <template:addResources type="css" resources="webapp/${requestScope.webappCssFileName}" media="screen"/>
 <script type="application/javascript"
-        src="/modules/game-4-jcustomer-components-quiz/javascript/webapp/${requestScope.webappJsFileName}"></script>
+        src="/modules/quiz-4-jahia/javascript/webapp/${requestScope.webappJsFileName}"></script>
 
 <c:set var="quizId" value="${jcr:getParentOfType(currentNode,'game4nt:quiz').identifier}"/>
 <c:set var="_uuid_" value="${currentNode.identifier}"/>
