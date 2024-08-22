@@ -1,0 +1,19 @@
+{
+  "$id": "https://jexperience.jahia.com/schemas/json/events/clickPlayer/source/1-0-0",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "self": {
+    "vendor": "jexperience.se.jahia.com",
+    "name": "clickPlayerSource",
+    "format": "jsonschema",
+    "version": "1-0-0"
+  },
+  "title": "Update click event source props",
+  "type": "object",
+  "allOf": [{"$ref" : "https://unomi.apache.org/schemas/json/item/1-0-0"}],
+  "properties": {
+    "properties": {
+      "$ref" : "https://jexperience.jahia.com/schemas/json/events/clickPlayer/source/properties/1-0-0"
+    }
+  },
+  "unevaluatedProperties": false
+}

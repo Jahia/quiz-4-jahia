@@ -1,0 +1,18 @@
+{
+  "$id": "https://jexperience.jahia.com/schemas/json/events/updateQuizVisitorData/properties/1-0-0",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "self": {
+    "vendor": "jexperience.se.jahia.com",
+    "name": "updateQuizVisitorDataProperties",
+    "format": "jsonschema",
+    "version": "1-0-0"
+  },
+  "title": "Update Quiz Visitor Data Properties",
+  "type": "object",
+  "properties": {
+    "update": {
+      "type" : "object"
+    }
+  },
+  "unevaluatedProperties": false
+}

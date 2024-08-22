@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "id": "updateQuizVisitorData",
+    "name": "Update Visitor Data",
+    "description": "Update visitor data with Quiz response value"
+  },
+  "raiseEventOnlyOnceForProfile": false,
+  "raiseEventOnlyOnceForSession": false,
+  "condition": {
+    "type": "eventTypeCondition",
+    "parameterValues": {
+      "eventTypeId": "updateQuizVisitorData"
+    }
+  },
+  "actions": [
+    {
+      "type": "updatePropertiesAction",
+      "parameterValues": {
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "label": {
+    "selectorType": {
+      "qna": {
+        "expectedAnswer": "Expected Answer",
+        "placeholder": {
+          "cdp": "(optional) User profile value",
+          "answer": "Answer"
+        }
+      }
+    }
+  }
+}

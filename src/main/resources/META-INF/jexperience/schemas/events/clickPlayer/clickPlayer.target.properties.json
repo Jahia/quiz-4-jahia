@@ -1,0 +1,18 @@
+{
+  "$id": "https://jexperience.jahia.com/schemas/json/events/clickPlayer/target/properties/1-0-0",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "self": {
+    "vendor": "jexperience.se.jahia.com",
+    "name": "clickPlayerTargetProperties",
+    "format": "jsonschema",
+    "version": "1-0-0"
+  },
+  "title": "Update click event target props Properties",
+  "type": "object",
+  "properties": {
+    "video": {
+      "type" : "object"
+    }
+  },
+  "unevaluatedProperties": false
+}

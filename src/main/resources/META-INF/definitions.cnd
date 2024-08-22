@@ -1,0 +1,99 @@
+<mix = 'http://www.jcp.org/jcr/mix/1.0'>
+<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
+<jmix = 'http://www.jahia.org/jahia/mix/1.0'>
+<game4mix = 'http://modules.se.jahia.org/game-4-jcustomer/mix/1.0'>
+<game4nt = 'http://modules.se.jahia.org/game-4-jcustomer/nt/1.0'>
+<game4 = 'http://modules.se.jahia.org/game-4-jcustomer/1.0'>
+
+[game4mix:components] > jmix:droppableContent mixin
+[game4mix:showInTree] > jmix:visibleInContentTree, jmix:editorialContent mixin
+
+[game4mix:imageReference] mixin
+ - game4:image (weakreference) indexed=no
+
+[game4mix:weakVideoContent] > jmix:dynamicFieldset mixin
+ extends = game4mix:mediaReference
+ - game4:video (weakreference) internationalized < jnt:file
+
+[game4mix:videoURL] > jmix:dynamicFieldset mixin
+ extends = game4mix:mediaReference
+ - game4:video (string) = 'https://' internationalized
+
+[game4mix:mediaReference] > game4mix:imageReference mixin
+ - game4:mediaSource (string) indexed=no
+
+
+[game4mix:mktoForm] > jmix:dynamicFieldset mixin
+ extends = game4mix:marketingFormReference
+ - game4:mktoConfig (string) internationalized fulltextsearchable=no
+
+[game4mix:marketingFormReference] mixin
+ - game4:marketingFormChoice (string) indexed=no
+
+
+[game4mix:quizChild] mixin
+[game4mix:warmupChild] mixin
+
+[game4mix:quizStaticLabels] mixin
+ - game4:btnStart (string) = resourceBundle('label.game4_btnStart') autocreated internationalized mandatory indexed=no
+ - game4:btnSubmit (string) = resourceBundle('label.game4_btnSubmit') autocreated internationalized mandatory indexed=no
+ - game4:btnQuestion (string) = resourceBundle('label.game4_btnQuestion') autocreated internationalized mandatory indexed=no
+ - game4:btnNextQuestion (string) = resourceBundle('label.game4_btnNextQuestion') autocreated internationalized mandatory indexed=no
+ - game4:btnShowResults (string) = resourceBundle('label.game4_btnShowResults') autocreated internationalized mandatory indexed=no
+ - game4:btnReset (string) = resourceBundle('label.game4_btnReset') autocreated internationalized mandatory indexed=no
+ - game4:consentTitle (string) = resourceBundle('label.game4_consentTitle') autocreated internationalized mandatory indexed=no
+ - game4:correctAnswer (string) = resourceBundle('label.game4_correctAnswer') autocreated internationalized mandatory indexed=no
+ - game4:wrongAnswer (string) = resourceBundle('label.game4_wrongAnswer') autocreated internationalized mandatory indexed=no
+
+[game4mix:quizConfiguration] mixin
+ extends = game4nt:quiz
+ itemtype = content
+ - game4:webappTheme (string) = resourceBundle('config.webappTheme') indexed=no
+ - game4:transition (boolean) = false autocreated mandatory indexed=no
+ - game4:transitionLabel (string) indexed=no
+ - game4:reset (boolean) = false autocreated mandatory indexed=no
+ - game4:browsing (boolean) = false autocreated mandatory indexed=no
+
+[game4nt:quizHeading] > jnt:content, game4mix:components, jmix:bindedComponent, jmix:studioOnly
+
+[game4nt:quiz] > jnt:content, jmix:mainResource, game4mix:components, game4mix:showInTree, game4mix:imageReference, game4mix:marketingFormReference, mix:title, game4mix:quizStaticLabels
+orderable
+ - game4:quizKey (string) primary mandatory fulltextsearchable=no
+ - game4:subtitle (string) internationalized
+ - game4:description (string, richtext[ckeditor.toolbar='Tinny',ckeditor.customConfig='$context/modules/game-4-jcustomer-components-quiz/javascript/ckeditor/config/small.js']) internationalized
+ - game4:duration (string,choicelist[resourceBundle]) = '5 mins' autocreated indexed=no < '5 mins', '10 mins', '30 mins', '1h' , '> 1h'
+ + * (game4mix:quizChild)
+// + game4:personalizedScoreContent (game4nt:scorePerso)
+
+[game4nt:warmup] > jnt:content, game4mix:showInTree, game4mix:quizChild, game4mix:mediaReference, mix:title
+orderable
+ - game4:subtitle (string) internationalized
+ - game4:content (string, richtext[ckeditor.toolbar='Tinny',ckeditor.customConfig='$context/modules/game-4-jcustomer-components-quiz/javascript/ckeditor/config/small.js']) internationalized
+ - game4:qnaDuration (string,choicelist[resourceBundle]) = '5 mins' autocreated indexed=no < '5 mins', '10 mins', '30 mins', '1h' , '> 1h'
+ + * (game4mix:warmupChild)
+
+[game4nt:warmupPerso] > jnt:content, jmix:list, mix:title, game4mix:quizChild
+orderable
++ * (game4nt:warmup)
+
+[game4nt:qna] > jnt:content, game4mix:showInTree, seumix:mapJExpProperty, game4mix:imageReference, game4mix:quizChild,game4mix:warmupChild, mix:title
+ - game4:question (string) mandatory internationalized
+ - game4:help (string) internationalized
+ - game4:answers (string) mandatory multiple internationalized indexed=no
+ - game4:randomSelection (boolean) = false autocreated indexed=no
+ - game4:notUsedForScore (boolean) indexed=no
+
+[game4nt:qnaPerso] > jnt:content, jmix:list, mix:title, game4mix:quizChild,game4mix:warmupChild
+orderable
++ * (game4nt:qna)
+
+[game4nt:scorePerso] > jnt:content, jmix:list, game4mix:imageReference, game4mix:quizChild
+orderable
+ - game4:title (string) internationalized
+ - game4:subtitle (string) internationalized
+ - game4:content (string, richtext[ckeditor.toolbar='Tinny',ckeditor.customConfig='$context/modules/game-4-jcustomer-components-quiz/javascript/ckeditor/config/small.js']) internationalized
++ * (jnt:bigText)
+
+
+[game4nt:quizReference] > jnt:content,jmix:nodeReference, game4mix:components
+ - j:node (weakreference) < 'game4nt:quiz'

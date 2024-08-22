@@ -1,0 +1,12 @@
+{
+  "name": "game4mix:weakVideoContent",
+  "fields": [
+    {
+      "name": "game4:video",
+      "selectorType": "Picker",
+      "selectorOptionsMap": {
+        "type": "video"
+      }
+    }
+  ]
+}

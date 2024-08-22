@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+
+    <description>Custom jExp Functions</description>
+    <display-name>Custom jExp Functions</display-name>
+    <tlib-version>1.0.0-SNAPSHOT</tlib-version>
+    <short-name>qjexp</short-name>
+    <uri>http://www.jahia.org/qjexp</uri>
+
+    <function>
+        <name>searchQuizScore</name>
+        <function-class>org.jahia.se.modules.game.quiz.jExperience.Functions</function-class>
+        <function-signature>java.util.Map searchQuizScoreEvent(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String,java.lang.String,java.lang.String)</function-signature>
+    </function>
+</taglib>

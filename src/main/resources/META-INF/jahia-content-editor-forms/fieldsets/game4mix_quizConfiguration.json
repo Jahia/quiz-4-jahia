@@ -1,0 +1,12 @@
+{
+  "name": "game4mix:quizConfiguration",
+  "fields": [
+    {
+      "name": "game4:webappTheme",
+      "selectorType": "CodeMirror",
+      "selectorOptionsMap": {
+        "mode": "javascript"
+      }
+    }
+  ]
+}

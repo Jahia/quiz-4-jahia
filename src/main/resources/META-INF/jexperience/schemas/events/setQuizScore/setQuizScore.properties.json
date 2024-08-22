@@ -1,0 +1,18 @@
+{
+  "$id": "https://jexperience.jahia.com/schemas/json/events/setQuizScore/properties/1-0-0",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "self": {
+    "vendor": "jexperience.se.jahia.com",
+    "name": "setQuizScoreProperties",
+    "format": "jsonschema",
+    "version": "1-0-0"
+  },
+  "title": "Update Quiz Visitor Score Properties",
+  "type": "object",
+  "properties": {
+    "update": {
+      "type" : "object"
+    }
+  },
+  "unevaluatedProperties": false
+}

@@ -1,0 +1,21 @@
+{
+  "$id": "https://jexperience.jahia.com/schemas/json/events/clickPlayer/source/properties/1-0-0",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "self": {
+    "vendor": "jexperience.se.jahia.com",
+    "name": "clickPlayerSourceProperties",
+    "format": "jsonschema",
+    "version": "1-0-0"
+  },
+  "title": "Update click event source props Properties",
+  "type": "object",
+  "properties": {
+    "quiz": {
+      "type" : "object"
+    },
+    "warmup": {
+      "type" : "object"
+    }
+  },
+  "unevaluatedProperties": false
+}

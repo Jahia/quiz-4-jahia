@@ -1,0 +1,12 @@
+{
+  "name": "game4mix:imageReference",
+  "fields": [
+    {
+      "name": "game4:image",
+      "selectorType": "Picker",
+      "selectorOptionsMap": {
+        "type": "image"
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$id": "https://jexperience.jahia.com/schemas/json/events/clickPlayer/1-0-0",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "self":{
+    "vendor":"jexperience.se.jahia.com",
+    "target" : "events",
+    "name": "clickPlayer",
+    "format":"jsonschema",
+    "version":"1-0-0"
+  },
+  "title": "Update Quiz Visitor Score",
+  "type": "object",
+  "allOf": [{ "$ref": "https://unomi.apache.org/schemas/json/event/1-0-0" }],
+  "properties" : {
+    "source" : {
+      "$ref" : "https://jexperience.jahia.com/schemas/json/events/clickPlayer/source/1-0-0"
+    },
+    "target" : {
+      "$ref" : "https://jexperience.jahia.com/schemas/json/events/clickPlayer/target/1-0-0"
+    }
+  },
+  "unevaluatedProperties": false
+}
