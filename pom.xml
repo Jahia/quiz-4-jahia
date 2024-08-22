@@ -15,8 +15,9 @@
     <description>Quiz 4 Jahia: Enhancing User Profiles Through Gamification</description>
 
     <scm>
-        <connection>scm:dummy:uri</connection>
-        <developerConnection>scm:dummy:uri</developerConnection>
+        <connection>scm:git:git@github.com:Jahia/quiz-4-jahia.git</connection>
+        <developerConnection>scm:git:git@github.com:Jahia/quiz-4-jahia.git</developerConnection>
+        <url>https://github.com/Jahia/quiz-4-jahia</url>
     </scm>
 
     <properties>
