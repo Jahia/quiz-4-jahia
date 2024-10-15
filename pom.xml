@@ -71,7 +71,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <_dsannotations>org.jahia.se.modules.game.*</_dsannotations>
+                        <_dsannotations>org.jahia.se.modules.quiz.*</_dsannotations>
                         <Jahia-Static-Resources>/css,/fonts,/javascript,/icons</Jahia-Static-Resources>
                     </instructions>
                 </configuration>

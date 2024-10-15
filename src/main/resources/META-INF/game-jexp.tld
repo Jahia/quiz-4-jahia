@@ -13,7 +13,7 @@
 
     <function>
         <name>searchQuizScore</name>
-        <function-class>org.jahia.se.modules.game.quiz.jExperience.Functions</function-class>
+        <function-class>org.jahia.se.modules.quiz.jExperience.QuizTagFunctions</function-class>
         <function-signature>java.util.Map searchQuizScoreEvent(javax.servlet.http.HttpServletRequest,java.lang.String,java.lang.String,java.lang.String,java.lang.String)</function-signature>
     </function>
 </taglib>

@@ -1,4 +1,4 @@
-package org.jahia.se.modules.game.quiz.rules;
+package org.jahia.se.modules.quiz.rules;
 
 import com.ning.http.client.AsyncCompletionHandler;
 import com.ning.http.client.AsyncHttpClient;

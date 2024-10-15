@@ -1,4 +1,4 @@
-package org.jahia.se.modules.game.webapp;
+package org.jahia.se.modules.quiz.webapp;
 import org.apache.commons.lang.StringUtils;
 import org.jahia.services.render.RenderContext;
 import org.jahia.services.render.Resource;
