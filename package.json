@@ -14,7 +14,7 @@
     },
     "description": "Jahia Quiz Qna Json Editor",
     "main": "index.js",
-    "repository": "git@github.com:Jahia/content-editor-codeMirror.git",
+    "repository": "git@github.com:Jahia/quiz-4-jahia.git",
     "author": "Herve Duchesne <hduchesne@jahia.com>",
     "license": "SEE LICENSE IN LICENSE.md FILE",
     "jahia": {

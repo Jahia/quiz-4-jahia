@@ -56,7 +56,7 @@ const formatValue = value => {
 
 const QnAJsonCmp = ({field, id, value, onChange, classes}) => {
     const maxLength = field.selectorOptions.find(option => option.name === 'maxLength');
-    const {t} = useTranslation('game-4-jcustomer-components-quiz');
+    const {t} = useTranslation('quiz-4-jahia');
 
     // Note do a convert here, because I need a unique format for the app!
     const controlledValue = formatValue(value);
