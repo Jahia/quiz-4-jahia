@@ -12,10 +12,10 @@
 <c:set var="_nodeType_" value="${currentNode.primaryNodeTypeName}"/>
 <c:set var="language" value="${currentResource.locale.language}"/>
 <c:set var="workspace" value="${renderContext.workspace}"/>
-<c:set var="isEdit" value="${renderContext.editMode}"/>
 <c:set var="site" value="${renderContext.site.siteKey}"/>
 <c:set var="host" value="${url.server}"/>
 <c:set var="targetId" value="REACT_Quiz_${fn:replace(random.nextInt(),'-','_')}"/>
+<c:set var="isEdit" value="${renderContext.editMode}"/>
 
 <!-- CM view -->
 <div id="${targetId}"></div>
@@ -23,10 +23,10 @@
     window.quizUIApp("${targetId}",{
         host:"${host}",
         workspace:"${workspace}",
-        isEdit:${isEdit},
         scope:"${site}",//site key
         locale:"${language}",
         quizId:"${_uuid_}",
+        isEdit:${isEdit},
         previewTarget:{
             id:"${_uuid_}",
             type:"${_nodeType_}"
