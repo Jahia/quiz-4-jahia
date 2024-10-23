@@ -44,7 +44,7 @@ public class ScoreAsUserProperty implements BackgroundAction {
         try {
             JCRSiteNode site = jcrNodeWrapper.getResolveSite();
 
-            String quizScoreProperty = getQuizScoreProperty(contextServerService,site,restApiPathToTestPropertyExist);
+            PropertyType quizScoreProperty = getQuizScoreProperty(contextServerService,site,restApiPathToTestPropertyExist);
 
             if(quizScoreProperty == null)
                 registerQuizScoreProperty(contextServerService, site, jExpPropertyId);
@@ -54,41 +54,21 @@ public class ScoreAsUserProperty implements BackgroundAction {
         }
     }
 
-    private static String getQuizScoreProperty(ContextServerService contextServerService, JCRSiteNode site, String restApiPathToTestPropertyExist){
+    private static PropertyType getQuizScoreProperty(ContextServerService contextServerService, JCRSiteNode site, String restApiPathToTestPropertyExist){
         try{
-            PropertyType scoreProps = contextServerService.executeGetRequest(
+            return contextServerService.executeGetRequest(
                     site.getSiteKey(),
                     restApiPathToTestPropertyExist,
                     null,
                     null,
                     PropertyType.class
             );
-            return scoreProps.getItemId();
-//            final AsyncHttpClient asyncHttpClient = contextServerService
-//                    .initAsyncHttpClient(site.getSiteKey());
-//
-//            if (asyncHttpClient != null) {
-//                AsyncHttpClient.BoundRequestBuilder requestBuilder = contextServerService
-//                        .initAsyncRequestBuilder(site.getSiteKey(), asyncHttpClient, path,
-//                                true, true, true);
-//
-//                ListenableFuture<Response> future = requestBuilder.execute(new AsyncCompletionHandler<Response>() {
-//                    @Override
-//                    public Response onCompleted(Response response) {
-//                        asyncHttpClient.closeAsynchronously();
-//                        return response;
-//                    }
-//                });
-//
-//                responseString = future.get().getResponseBody();
-//            }
-
-        }catch (IOException /*| ExecutionException | InterruptedException*/ e){
+        }catch (IOException e){
             logger.error("Error happened", e);
         }
 
         return null;
-    };
+    }
 
     private static void registerQuizScoreProperty(ContextServerService contextServerService, JCRSiteNode site, String jExpPropertyId) {
         try{
@@ -104,33 +84,8 @@ public class ScoreAsUserProperty implements BackgroundAction {
         } catch (IOException e) {
             logger.error("Error happened", e);
         }
-
-
-//            try (AsyncHttpClient asyncHttpClient = contextServerService.initAsyncHttpClient(site.getSiteKey())) {
-//                //preparePost Builder
-//                AsyncHttpClient.BoundRequestBuilder requestBuilder = contextServerService
-//                        .initAsyncRequestBuilder(site.getSiteKey(), asyncHttpClient, PROPERTIES_PATH,
-//                                false, true, true);
-//
-//                requestBuilder.setBodyEncoding(StandardCharsets.UTF_8.name()).setBody(json);
-//                requestBuilder.setHeader("accept", "application/json");
-//                requestBuilder.setHeader("content-type", "application/json");
-//                ListenableFuture<Response> future = requestBuilder.execute(new AsyncCompletionHandler<Response>() {
-//                    @Override
-//                    public Response onCompleted(Response response) {
-//                        asyncHttpClient.closeAsynchronously();
-//                        return response;
-//                    }
-//                });
-//                response = future.get().getResponseBody();
-//
-//            } catch (IOException | ExecutionException | InterruptedException e) {
-//                logger.error("Error happened", e);
-//            }
-//
-//
-//        return response;
     }
+
     private static String getPayload(String jExpPropertyId) {
         try {
             JSONObject jsonObject = new JSONObject();
