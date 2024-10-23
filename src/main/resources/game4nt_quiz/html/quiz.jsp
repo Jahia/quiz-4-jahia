@@ -16,7 +16,6 @@
 <c:set var="site" value="${renderContext.site.siteKey}"/>
 <c:set var="host" value="${url.server}"/>
 
-<%--<c:set var="token" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJodHRwOi8vamFoaWEuY29tIiwic3ViIjoiYXBpIHZlcmlmaWNhdGlvbiIsImlzcyI6ImR4Iiwic2NvcGVzIjpbImdhbWU0UXVpeiJdLCJpYXQiOjE2MjAwMzY2MjIsImp0aSI6IjAxZjA4ODU4LTI0ODgtNDIzMy1iYWM2LTI3ZWQ0MzBhYjFjMCJ9.kgQy5hZwnDqOrGwn8afRHxlf3nMPpKUrOJZurSbc0dk"/>--%>
 <c:set var="targetId" value="REACT_Quiz_${fn:replace(random.nextInt(),'-','_')}"/>
 
 <div id="${targetId}"></div>
@@ -29,7 +28,6 @@
         scope:"${site}",//site key
         locale:"${language}",
         quizId:"${_uuid_}",
-        <%--filesServerUrl:"${host}/files/${workspace}",--%>
         gqlServerUrl:"${host}/modules/graphql",
         contextServerUrl:window.digitalData?window.digitalData.contextServerPublicUrl:undefined,//digitalData is set in live mode only
     };

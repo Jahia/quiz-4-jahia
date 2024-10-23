@@ -1,13 +1,11 @@
 package org.jahia.se.modules.quiz.rules;
 
-import com.ning.http.client.AsyncCompletionHandler;
-import com.ning.http.client.AsyncHttpClient;
-import com.ning.http.client.ListenableFuture;
-import com.ning.http.client.Response;
+import org.apache.unomi.api.PropertyType;
 import org.jahia.modules.jexperience.admin.ContextServerService;
 import org.jahia.services.content.JCRNodeWrapper;
 import org.jahia.services.content.decorator.JCRSiteNode;
 import org.jahia.services.content.rules.BackgroundAction;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,8 +16,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.jcr.RepositoryException;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.concurrent.ExecutionException;
 
 @Component(service = BackgroundAction.class, immediate = true)
 public class ScoreAsUserProperty implements BackgroundAction {
@@ -44,92 +40,123 @@ public class ScoreAsUserProperty implements BackgroundAction {
     public void executeBackgroundAction(JCRNodeWrapper jcrNodeWrapper) {
 
         String jExpPropertyId = jcrNodeWrapper.getPropertyAsString(PROPERTY_NAME);
-        String testPath = PROPERTIES_PATH+"/"+PROPERTY_PREFIX_ID+jExpPropertyId;
+        String restApiPathToTestPropertyExist = PROPERTIES_PATH+"/"+PROPERTY_PREFIX_ID+jExpPropertyId;
         try {
             JCRSiteNode site = jcrNodeWrapper.getResolveSite();
 
-            String item = getItem(contextServerService,site,testPath);
-            if(item=="")
-                item = registerItem(contextServerService, site, PROPERTIES_PATH, jExpPropertyId);
+            String quizScoreProperty = getQuizScoreProperty(contextServerService,site,restApiPathToTestPropertyExist);
+
+            if(quizScoreProperty == null)
+                registerQuizScoreProperty(contextServerService, site, jExpPropertyId);
+
         } catch (RepositoryException e) {
             logger.error("",e);
         }
     }
 
-    private static String getItem(ContextServerService contextServerService, JCRSiteNode site, String path){
-        String responseString = "";
+    private static String getQuizScoreProperty(ContextServerService contextServerService, JCRSiteNode site, String restApiPathToTestPropertyExist){
         try{
-            final AsyncHttpClient asyncHttpClient = contextServerService
-                    .initAsyncHttpClient(site.getSiteKey());
+            PropertyType scoreProps = contextServerService.executeGetRequest(
+                    site.getSiteKey(),
+                    restApiPathToTestPropertyExist,
+                    null,
+                    null,
+                    PropertyType.class
+            );
+            return scoreProps.getItemId();
+//            final AsyncHttpClient asyncHttpClient = contextServerService
+//                    .initAsyncHttpClient(site.getSiteKey());
+//
+//            if (asyncHttpClient != null) {
+//                AsyncHttpClient.BoundRequestBuilder requestBuilder = contextServerService
+//                        .initAsyncRequestBuilder(site.getSiteKey(), asyncHttpClient, path,
+//                                true, true, true);
+//
+//                ListenableFuture<Response> future = requestBuilder.execute(new AsyncCompletionHandler<Response>() {
+//                    @Override
+//                    public Response onCompleted(Response response) {
+//                        asyncHttpClient.closeAsynchronously();
+//                        return response;
+//                    }
+//                });
+//
+//                responseString = future.get().getResponseBody();
+//            }
 
-            if (asyncHttpClient != null) {
-                AsyncHttpClient.BoundRequestBuilder requestBuilder = contextServerService
-                        .initAsyncRequestBuilder(site.getSiteKey(), asyncHttpClient, path,
-                                true, true, true);
-
-                ListenableFuture<Response> future = requestBuilder.execute(new AsyncCompletionHandler<Response>() {
-                    @Override
-                    public Response onCompleted(Response response) {
-                        asyncHttpClient.closeAsynchronously();
-                        return response;
-                    }
-                });
-
-                responseString = future.get().getResponseBody();
-            }
-
-        }catch (IOException | ExecutionException | InterruptedException e){
+        }catch (IOException /*| ExecutionException | InterruptedException*/ e){
             logger.error("Error happened", e);
         }
 
-        return responseString;
+        return null;
     };
 
-    private static String registerItem(ContextServerService contextServerService, JCRSiteNode site, String path, String jExpPropertyId) {
-        String response="0";
+    private static void registerQuizScoreProperty(ContextServerService contextServerService, JCRSiteNode site, String jExpPropertyId) {
+        try{
+            String payload = getPayload(jExpPropertyId);
+            contextServerService.executePostRequest(
+                    site.getSiteKey(),
+                    PROPERTIES_PATH,
+                    payload,
+                    null,
+                    null,
+                    Boolean.class
+            );
+        } catch (IOException e) {
+            logger.error("Error happened", e);
+        }
 
+
+//            try (AsyncHttpClient asyncHttpClient = contextServerService.initAsyncHttpClient(site.getSiteKey())) {
+//                //preparePost Builder
+//                AsyncHttpClient.BoundRequestBuilder requestBuilder = contextServerService
+//                        .initAsyncRequestBuilder(site.getSiteKey(), asyncHttpClient, PROPERTIES_PATH,
+//                                false, true, true);
+//
+//                requestBuilder.setBodyEncoding(StandardCharsets.UTF_8.name()).setBody(json);
+//                requestBuilder.setHeader("accept", "application/json");
+//                requestBuilder.setHeader("content-type", "application/json");
+//                ListenableFuture<Response> future = requestBuilder.execute(new AsyncCompletionHandler<Response>() {
+//                    @Override
+//                    public Response onCompleted(Response response) {
+//                        asyncHttpClient.closeAsynchronously();
+//                        return response;
+//                    }
+//                });
+//                response = future.get().getResponseBody();
+//
+//            } catch (IOException | ExecutionException | InterruptedException e) {
+//                logger.error("Error happened", e);
+//            }
+//
+//
+//        return response;
+    }
+    private static String getPayload(String jExpPropertyId) {
         try {
             JSONObject jsonObject = new JSONObject();
             JSONObject metadata = new JSONObject();
-            JSONArray systemTags = new JSONArray("[\"hasCardDataTag\",\"cardDataTag/_game4Quiz/20.1/Game4Quiz\",\"positionInCard.2\"]");
+            JSONArray systemTags = new JSONArray();
 
-            metadata.put("id",PROPERTY_PREFIX_ID+jExpPropertyId);
-            metadata.put("name","Quiz Score "+jExpPropertyId);
-            metadata.put("readOnly",false);
-            metadata.put("systemTags",systemTags);
+            systemTags.put("hasCardDataTag");
+            systemTags.put("cardDataTag/_game4Quiz/20.1/Game4Quiz");
+            systemTags.put("positionInCard.2");
+
+            metadata.put("id", PROPERTY_PREFIX_ID + jExpPropertyId);
+            metadata.put("name", "Quiz Score " + jExpPropertyId);
+            metadata.put("readOnly", false);
+            metadata.put("systemTags", systemTags);
 
             jsonObject.put("target", "profiles");
-            jsonObject.put("multivalued", "false");
+            jsonObject.put("multivalued", false);
             jsonObject.put("type", "integer");
             jsonObject.put("metadata", metadata);
 
-            String json = jsonObject.toString();
-            try (AsyncHttpClient asyncHttpClient = contextServerService.initAsyncHttpClient(site.getSiteKey())) {
-                //preparePost Builder
-                AsyncHttpClient.BoundRequestBuilder requestBuilder = contextServerService
-                        .initAsyncRequestBuilder(site.getSiteKey(), asyncHttpClient, PROPERTIES_PATH,
-                                false, true, true);
+            return jsonObject.toString();
 
-                requestBuilder.setBodyEncoding(StandardCharsets.UTF_8.name()).setBody(json);
-                requestBuilder.setHeader("accept", "application/json");
-                requestBuilder.setHeader("content-type", "application/json");
-                ListenableFuture<Response> future = requestBuilder.execute(new AsyncCompletionHandler<Response>() {
-                    @Override
-                    public Response onCompleted(Response response) {
-                        asyncHttpClient.closeAsynchronously();
-                        return response;
-                    }
-                });
-                response = future.get().getResponseBody();
-
-            } catch (IOException | ExecutionException | InterruptedException e) {
-                logger.error("Error happened", e);
-            }
         }catch (JSONException e){
             logger.error("JSON builder failed : ",e);
         }
-
-        return response;
+        return null;
     }
 }
 
