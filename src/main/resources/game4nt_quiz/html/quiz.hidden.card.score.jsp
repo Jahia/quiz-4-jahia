@@ -23,7 +23,7 @@
         <div class="card-footer">
             <c:choose>
                 <c:when test="${renderContext.editMode}">
-                    <fmt:message key="label.game4_scoreCalculationInProgress"/>...
+                    <fmt:message key="label.game4_scoreNotAvailableInEditMode"/>
                 </c:when>
                 <c:otherwise>
                     <c:if test="${quizReset eq 'true' && !empty quizScore}" >
