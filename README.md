@@ -1,4 +1,4 @@
-# Quiz experience (quiz-4-jahia)
+# Jahia Quiz Module: Elevate Your Quiz Experience!
 
 The Jahia Quiz Module is an extension for the Jahia Digital Experience Platform (DXP) that allows you to create
 and manage interactive quizzes on your website. It enables content creators and marketers to engage visitors
@@ -40,7 +40,16 @@ actionable data within their Jahia-powered websites.
 ## Module content
 
 This module is used to configure Jahia as a backend of the Quiz React webapp.
-Also, it contains :
+> The quiz webapp, embedded in this module, is a standalone React webapp.
+> To update the webapp in this module :
+> 
+> 1- Clone the [webapp source project][webapp-src] at the same directory level as this module.
+> 
+> 2- Update the webapp source project and run in the webapp source directory `yarn run build-jahia`. This command
+> build the webapp source, copy/past the build files into the jahia quiz module and update the path in the webapp to
+> match the new location.
+
+The jahia quiz module contains :
 * The content definition of **Quiz**, **Warmup** (personalized or not), **Question & Answer** (personalized or not),
   and **Quiz Reference** (see the [definitions.cnd] file.), and the JSON
   **selectorType configurations** (see [the folder][selector_conf]).
@@ -423,8 +432,8 @@ displayed in a random order and the response can be ignored to calculate the fin
 
 <img src="./doc/images/300_qna.png" width="650px"/>
 
-> A specific selectorType named [QnAJson] is used to contribute the answer. It allows contributor
-> to fill 3 props at a time : (i) is the expected answer, (ii) value to store in jExperience, (iii) text of the answer
+> A **custom selectorType** ([QnAJson]) is used to manage 3 related properties (need for answer) and store
+the result as a JSON into a Jahia String property.
 
 Render in the React webapp the QnA looks like this:
 
@@ -525,6 +534,7 @@ This node type is defined as follows:
 [QnAJson]: ./src/javascript/QnAJson
 [jExp_conf]: ./src/main/resources/META-INF/jexperience
 [selector_conf]:  ./src/main/resources/META-INF/jahia-content-editor-forms/fieldsets
+[webapp-src]: https://github.com/Jahia/quiz-4-jahia-webapp
 [theme.js]: https://github.com/Jahia/quiz-4-jahia-webapp/blob/main/src/components/theme.js
 [Mui_theme]: https://material-ui.com/customization/default-theme
 [se-jExp-utils]: https://github.com/Jahia/se-jExp-utils
