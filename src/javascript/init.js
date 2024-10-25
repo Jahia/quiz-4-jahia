@@ -1,10 +1,6 @@
 import {registry} from '@jahia/ui-extender';
 import QnAJson from './QnAJson';
 
-import i18next from 'i18next';
-
-i18next.loadNamespaces('game-4-jcustomer-components-quiz');
-
 export default function () {
     registry.add('callback', 'QnAJsonEditor', {
         targets: ['jahiaApp-init:20'],
