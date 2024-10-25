@@ -10,7 +10,7 @@
     <groupId>org.jahia.se.modules</groupId>
     <artifactId>quiz-4-jahia</artifactId>
     <name>Quiz 4 Jahia</name>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <description>Quiz 4 Jahia: Enhancing User Profiles Through Gamification</description>
 
@@ -18,7 +18,7 @@
         <connection>scm:git:git@github.com:Jahia/quiz-4-jahia.git</connection>
         <developerConnection>scm:git:git@github.com:Jahia/quiz-4-jahia.git</developerConnection>
         <url>https://github.com/Jahia/quiz-4-jahia</url>
-      <tag>quiz-4-jahia-1.0.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <properties>
