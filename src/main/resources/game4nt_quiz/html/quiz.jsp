@@ -36,14 +36,14 @@
         //in case if edit mode slow down the load waiting for the jahia GWT UI was setup,
         // otherwise the react app failed (maybe loosing his position as the DOM is updated by the jahia UI at the same time)
         <c:choose>
-        <c:when test="${isEdit}" >
-        setTimeout(() => {
+            <c:when test="${isEdit}" >
+            setTimeout(() => {
+                window.quizUIApp("${targetId}",quiz_context_${targetId});
+            },500);
+            </c:when>
+            <c:otherwise>
             window.quizUIApp("${targetId}",quiz_context_${targetId});
-        },500);
-        </c:when>
-        <c:otherwise>
-        window.quizUIApp("${targetId}",quiz_context_${targetId});
-        </c:otherwise>
+            </c:otherwise>
         </c:choose>
     });
 </script>
